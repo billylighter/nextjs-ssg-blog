@@ -1,22 +1,14 @@
+import "@/app/globals.css";
+import "@/styles/md-styles.css";
 import {GetStaticPaths, GetStaticProps} from 'next';
+import Image from "next/image";
+import Link from "next/link";
 import {getAllPosts, getPostBySlug} from '@/lib/posts';
 import {remark} from 'remark';
 import html from 'remark-html';
-import "@/app/globals.css";
-import "@/styles/md-styles.css";
-import Image from "next/image";
-import Link from "next/link";
+import Post from "@/types/Post";
 
-type Props = {
-    title: string;
-    content: string;
-    date: string;
-    readingTime?: number;
-    featuredImage?: string;
-    tags?: string[];
-};
-
-export default function PostPage({title, content, date, readingTime, featuredImage, tags}: Props) {
+export default function PostPage({title, content, date, readingTime, featuredImage, tags, author}: Post) {
     const dateFormatter = new Intl.DateTimeFormat('en-GB', {day: '2-digit', month: '2-digit', year: 'numeric'});
 
     return (
@@ -33,11 +25,27 @@ export default function PostPage({title, content, date, readingTime, featuredIma
                         src={featuredImage}
                         alt={title}
                         width={1200}
-                        height={120}
-                        className=" my-0"
+                        height={420}
+                        className="my-0 max-h-[420px] object-cover"
                     />
 
                 )}
+
+                <div className="flex items-center gap-3 mb-2">
+                    {author?.avatar && (
+                        <Image
+                            src={author.avatar}
+                            alt={author.name}
+                            width={32}
+                            height={32}
+                            className={"avatar rounded-full object-cover h-[32px] w-[32px]"}
+                        />
+                    )}
+
+                    <span className="text-sm text-gray-500">
+                                    {author?.name}
+                                </span>
+                </div>
 
                 <div className="flex justify-between items-center text-sm text-gray-500 mb-6">
                     <span>{dateFormatter.format(new Date(date))}</span>
@@ -88,7 +96,11 @@ export const getStaticProps: GetStaticProps = async ({params}) => {
             date: data.date,
             readingTime: data.readingTime,
             featuredImage: data.featuredImage,
-            tags: data.tags ?? []
+            tags: data.tags ?? [],
+            author: {
+                name: data.author.name,
+                avatar: data.author.avatar
+            }
         },
     };
 };

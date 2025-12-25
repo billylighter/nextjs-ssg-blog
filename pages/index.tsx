@@ -4,21 +4,7 @@ import { GetStaticProps } from 'next';
 import { getAllPosts } from '@/lib/posts';
 import "@/app/globals.css";
 import dateFormatter from "@/utils/dateFormatter";
-
-type Post = {
-    slug: string;
-    title: string;
-    date: string;
-    description: string;
-    featuredImage?: string;
-    author?: {
-        name: string;
-        avatar?: string;
-    };
-    readingTime?: number;
-    category?: string;
-    tags?: string[];
-};
+import Post from "@/types/Post";
 
 export default function Home({ posts }: { posts: Post[] }) {
 
@@ -51,7 +37,7 @@ export default function Home({ posts }: { posts: Post[] }) {
                                         alt={post.author.name}
                                         width={32}
                                         height={32}
-                                        className="rounded-full"
+                                        className={"avatar rounded-full object-fill h-[32px] w-[32px]"}
                                     />
                                 )}
 
@@ -88,8 +74,7 @@ export default function Home({ posts }: { posts: Post[] }) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-    const posts = getAllPosts(); // your function should return all frontmatter fields
-
+    const posts = getAllPosts();
     return {
         props: { posts },
     };

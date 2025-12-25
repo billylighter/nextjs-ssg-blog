@@ -94,3 +94,8 @@
     border: 1px solid #d1d5db;
     padding: 0.5rem;
 }
+
+.md img.avatar.rounded-full,
+.mdx img.avatar.rounded-full{
+    border-radius: 50%!important;
+}
