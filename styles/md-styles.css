@@ -1,0 +1,96 @@
+/* Scoped to parent class md or mdx */
+.mdx, .md {
+    max-width: none;
+    color: #1f2937; /* Tailwind text-gray-800 */
+    font-size: 1.125rem; /* prose-lg ~18px */
+    line-height: 1.75;
+    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+}
+
+/* Headings */
+.mdx h1, .md h1 { font-size: 1.875rem; font-weight: 700; margin: 2rem 0 1rem; }
+.mdx h2, .md h2 { font-size: 1.5rem; font-weight: 600; margin: 1.5rem 0 0.75rem; }
+.mdx h3, .md h3 { font-size: 1.25rem; font-weight: 600; margin: 1.25rem 0 0.5rem; }
+.mdx h4, .md h4 { font-size: 1.125rem; font-weight: 500; margin: 1rem 0 0.5rem; }
+.mdx h5, .md h5 { font-size: 1rem; font-weight: 500; margin: 0.75rem 0 0.25rem; }
+.mdx h6, .md h6 { font-size: 1rem; font-weight: 500; margin: 0.5rem 0 0.25rem; }
+
+/* Paragraphs */
+.mdx p, .md p {
+    margin-bottom: 1rem;
+    line-height: 1.75;
+}
+
+/* Links */
+.mdx a, .md a {
+    color: #2563eb; /* Tailwind blue-600 */
+    text-decoration: underline;
+}
+.mdx a:hover, .md a:hover {
+    color: #1e40af; /* Tailwind blue-800 */
+}
+
+/* Lists */
+.mdx ul, .md ul {
+    list-style-type: disc;
+    list-style-position: inside;
+    margin-bottom: 1rem;
+}
+.mdx ol, .md ol {
+    list-style-type: decimal;
+    list-style-position: inside;
+    margin-bottom: 1rem;
+}
+
+/* List items */
+.mdx li, .md li { margin-bottom: 0.5rem; }
+
+/* Blockquotes */
+.mdx blockquote, .md blockquote {
+    border-left: 4px solid #d1d5db; /* gray-300 */
+    padding-left: 1rem;
+    font-style: italic;
+    color: #4b5563; /* gray-600 */
+    margin: 1rem 0;
+}
+
+/* Code blocks */
+.mdx pre, .md pre {
+    background-color: #f3f4f6; /* gray-100 */
+    padding: 1rem;
+    border-radius: 0.375rem; /* rounded-md */
+    overflow-x: auto;
+    margin: 1rem 0;
+}
+.mdx code, .md code {
+    background-color: #f3f4f6; /* gray-100 */
+    padding: 0.125rem 0.25rem;
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+/* Images */
+.mdx img, .md img {
+    max-width: 100%;
+    border-radius: 0.25rem;
+    margin: 1rem 0;
+}
+
+/* Tables */
+.mdx table, .md table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+}
+.mdx th, .md th {
+    border: 1px solid #d1d5db; /* gray-300 */
+    padding: 0.5rem;
+    background-color: #e5e7eb; /* gray-200 */
+    text-align: left;
+}
+.mdx td, .md td {
+    border: 1px solid #d1d5db;
+    padding: 0.5rem;
+}

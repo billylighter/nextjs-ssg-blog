@@ -1,40 +1,96 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { GetStaticProps } from 'next';
 import { getAllPosts } from '@/lib/posts';
+import "@/app/globals.css";
+import dateFormatter from "@/utils/dateFormatter";
 
 type Post = {
     slug: string;
     title: string;
     date: string;
     description: string;
+    featuredImage?: string;
+    author?: {
+        name: string;
+        avatar?: string;
+    };
+    readingTime?: number;
+    category?: string;
+    tags?: string[];
 };
 
 export default function Home({ posts }: { posts: Post[] }) {
-    return (
-        <main>
-            <h1>Static Blog</h1>
 
-            <ul>
+    return (
+        <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+            <h1 className="text-4xl font-bold mb-8 text-gray-900">Static Blog</h1>
+
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 {posts.map((post) => (
-                    <li key={post.slug}>
-                        <Link href={`/posts/${post.slug}`}>
-                            <h2>{post.title}</h2>
-                        </Link>
-                        <p>{post.description}</p>
-                        <small>{post.date}</small>
-                    </li>
+
+                    <Link key={post.slug}
+                        href={"/posts/" + post.slug}
+                        className="block bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden">
+                        {post.featuredImage && (
+                            <div className="relative w-full h-48">
+                                <Image
+                                    src={post.featuredImage}
+                                    alt={post.title}
+                                    fill
+                                    className="object-cover"
+                                />
+                            </div>
+                        )}
+                        <div className="p-6">
+                            <div className="flex items-center gap-3 mb-2">
+                                {post.author?.avatar && (
+                                    <Image
+                                        src={post.author.avatar}
+                                        alt={post.author.name}
+                                        width={32}
+                                        height={32}
+                                        className="rounded-full"
+                                    />
+                                )}
+
+                                <span className="text-sm text-gray-500">
+                                    {post.author?.name}
+                                </span>
+                            </div>
+
+                            <h2 className="text-xl font-semibold text-gray-900 mb-2">{post.title}</h2>
+                            <p className="text-gray-700 mb-4">{post.description}</p>
+
+                            <div className="flex justify-between items-center text-sm text-gray-500">
+                                <span>{dateFormatter.format(new Date(post.date))}</span>
+
+                                {post.readingTime && <span>{post.readingTime} min read</span>}
+                            </div>
+
+                            {post.tags && (
+                                <div className="mt-4 flex flex-wrap gap-2">
+                                    {post.tags.map((tag) => (
+                                        <span key={tag}
+                                            className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">
+                                            {tag}
+                                        </span>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
+                    </Link>
                 ))}
-            </ul>
+            </div>
         </main>
     );
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-    const posts = getAllPosts();
+    const posts = getAllPosts(); // your function should return all frontmatter fields
 
     return {
-        props: {
-            posts,
-        },
+        props: { posts },
     };
 };

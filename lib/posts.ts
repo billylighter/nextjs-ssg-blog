@@ -1,3 +1,5 @@
+
+
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
@@ -7,7 +9,7 @@ const postsDirectory = path.join(process.cwd(), 'posts');
 export function getAllPosts() {
     const files = fs.readdirSync(postsDirectory);
 
-    return files.map((fileName) => {
+    const posts = files.map((fileName) => {
         const slug = fileName.replace(/\.mdx?$/, '');
         const fullPath = path.join(postsDirectory, fileName);
         const fileContents = fs.readFileSync(fullPath, 'utf8');
@@ -23,7 +25,14 @@ export function getAllPosts() {
             }),
         };
     });
+
+    posts.sort((a, b) => {
+        return new Date(b.date).getTime() - new Date(a.date).getTime();
+    });
+
+    return posts;
 }
+
 
 export function getPostBySlug(slug: string) {
     const mdPath = path.join(postsDirectory, `${slug}.md`);
