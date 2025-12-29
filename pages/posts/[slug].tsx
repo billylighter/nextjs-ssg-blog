@@ -26,10 +26,9 @@ export default function PostPage({title, content, date, readingTime, featuredIma
                         alt={title}
                         width={1280}
                         height={420}
-                        priority
+                        priority={true}
                         sizes="100vw"
                         className="object-cover"
-                        unoptimized
                     />
                 </div>
 

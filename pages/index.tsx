@@ -24,9 +24,9 @@ export default function Home({ posts }: { posts: Post[] }) {
                                 src={post.featuredImage || "/placeholder.jpeg"}
                                 alt={post.title}
                                 fill
+                                priority={true}
                                 sizes="(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 100vw"
                                 className="object-cover"
-                                unoptimized
                             />
                         </div>
 
