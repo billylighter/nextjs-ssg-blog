@@ -31,7 +31,7 @@ tags:
 
 status: "published"
 featured: true
-featuredImage: "/images/posts/advanced-ssg-techniques/thumbnail.jpg"
+#featuredImage: "/images/posts/advanced-ssg-techniques/thumbnail.jpg"
 readingTime: 8
 
 order: 5

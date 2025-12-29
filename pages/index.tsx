@@ -19,16 +19,17 @@ export default function Home({ posts }: { posts: Post[] }) {
                     <Link key={post.slug}
                         href={"/posts/" + post.slug}
                         className="block bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden">
-                        {post.featuredImage && (
-                            <div className="relative w-full h-48">
-                                <Image
-                                    src={post.featuredImage}
-                                    alt={post.title}
-                                    fill
-                                    className="object-cover"
-                                />
-                            </div>
-                        )}
+                        <div className="relative w-full h-48 bg-gray-100">
+                            <Image
+                                src={post.featuredImage || "/placeholder.jpeg"}
+                                alt={post.title}
+                                fill
+                                sizes="(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 100vw"
+                                className="object-cover"
+                                unoptimized
+                            />
+                        </div>
+
                         <div className="p-6">
                             <div className="flex items-center gap-3 mb-2">
                                 {post.author?.avatar && (

@@ -20,16 +20,18 @@ export default function PostPage({title, content, date, readingTime, featuredIma
                 </button>
             </Link>
             <article className="md mdx">
-                {featuredImage && (
+                <div className="relative w-full mb-4 bg-gray-100">
                     <Image
-                        src={featuredImage}
+                        src={featuredImage || "/placeholder.jpeg"}
                         alt={title}
-                        width={1200}
+                        width={1280}
                         height={420}
-                        className="my-0 max-h-[420px] object-cover"
+                        priority
+                        sizes="100vw"
+                        className="object-cover"
+                        unoptimized
                     />
-
-                )}
+                </div>
 
                 <div className="flex items-center gap-3 mb-2">
                     {author?.avatar && (
@@ -95,7 +97,7 @@ export const getStaticProps: GetStaticProps = async ({params}) => {
             content: processedContent.toString(),
             date: data.date,
             readingTime: data.readingTime,
-            featuredImage: data.featuredImage,
+            featuredImage: data.featuredImage || null,
             tags: data.tags ?? [],
             author: {
                 name: data.author.name,
