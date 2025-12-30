@@ -44,8 +44,3 @@ yarn dev
 
 ## License
 **This project is licensed under the MIT License.**
-
-
-- This version preserves **code blocks and proper indentation**.
-- If you want, I can also make a **super minimal “quick start” README** that’s just 1–2 minutes read for someone to start the app immediately.
-- Do you want me to do that?
