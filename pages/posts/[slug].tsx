@@ -14,58 +14,61 @@ export default function PostPage({title, content, date, readingTime, featuredIma
     return (
         <main className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
             <Link href="/">
-                <button className="mt-8 flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors">
+                <button className="mt-8 flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors cursor-pointer">
                     <span className="text-xl">←</span>
                     Back to Home
                 </button>
             </Link>
-            <article className="md mdx">
-                <div className="relative w-full mb-4 bg-gray-100">
+            <section>
+
+                <div className="relative w-full h-[420px] my-4 overflow-hidden">
                     <Image
                         src={featuredImage || "/placeholder.jpeg"}
                         alt={title}
-                        width={1280}
-                        height={420}
-                        priority={true}
+                        fill
+                        className="object-cover object-center"
                         sizes="100vw"
-                        className="object-cover"
+                        priority={false}
                     />
                 </div>
 
-                <div className="flex items-center gap-3 mb-2">
-                    {author?.avatar && (
-                        <Image
-                            src={author.avatar}
-                            alt={author.name}
-                            width={32}
-                            height={32}
-                            className={"avatar rounded-full object-cover h-[32px] w-[32px]"}
-                        />
-                    )}
+                <article className="md mdx">
 
-                    <span className="text-sm text-gray-500">
+                    <div className="flex items-center gap-3 mb-2">
+                        {author?.avatar && (
+                            <Image
+                                src={author.avatar}
+                                alt={author.name}
+                                width={32}
+                                height={32}
+                                className={"avatar rounded-full object-cover h-[32px] w-[32px]"}
+                            />
+                        )}
+
+                        <span className="text-sm text-gray-500">
                                     {author?.name}
                                 </span>
-                </div>
+                    </div>
 
-                <div className="flex justify-between items-center text-sm text-gray-500 mb-6">
-                    <span>{dateFormatter.format(new Date(date))}</span>
-                    {readingTime && <span>{readingTime} min read</span>}
-                </div>
+                    <div className="flex justify-between items-center text-sm text-gray-500 mb-6">
+                        <span>{dateFormatter.format(new Date(date))}</span>
+                        {readingTime && <span>{readingTime} min read</span>}
+                    </div>
 
-                {tags && (
-                    <div className="mt-4 flex flex-wrap gap-2">
-                        {tags?.map((tag) => (
-                            <span key={tag}
-                                  className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">
+                    {tags && (
+                        <div className="mt-4 flex flex-wrap gap-2">
+                            {tags?.map((tag) => (
+                                <span key={tag}
+                                      className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">
                                             {tag}
                                         </span>
-                        ))}
-                    </div>
-                )}
+                            ))}
+                        </div>
+                    )}
 
-                <div dangerouslySetInnerHTML={{__html: content}}/>
-            </article>
+                    <div dangerouslySetInnerHTML={{__html: content}}/>
+                </article>
+            </section>
         </main>
     );
 }
