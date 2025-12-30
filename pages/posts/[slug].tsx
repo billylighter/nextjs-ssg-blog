@@ -13,12 +13,13 @@ export default function PostPage({title, content, date, readingTime, featuredIma
 
     return (
         <main className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <Link href="/">
-                <button className="mt-8 flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors cursor-pointer">
+            <div className={"mb-0 bg-blue-600 text-white hover:bg-blue-700 transition-colors"}>
+                <Link href="/"
+                      className="flex items-center gap-2 px-4 py-2  rounded  cursor-pointer">
                     <span className="text-xl">←</span>
                     Back to Home
-                </button>
-            </Link>
+                </Link>
+            </div>
             <section>
 
                 <div className="relative w-full h-[420px] my-4 overflow-hidden">
